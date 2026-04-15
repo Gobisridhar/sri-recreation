@@ -283,19 +283,20 @@ button {
 <!-- ORDER -->
 <div class="section" id="order">
   <h2>Order Your Portrait</h2>
-  <form>
-    <input type="text" placeholder="Your Name" required>
-    <input type="tel" placeholder="Phone Number" required>
-    <input type="file" required>
+  <form onsubmit="sendToWhatsApp(event)">
+  <input type="text" id="name" placeholder="Your Name" required>
+  <input type="tel" id="phone" placeholder="Phone Number" required>
 
-    <select>
-      <option>A4</option>
-      <option>A3</option>
-    </select>
+  <select id="size">
+    <option>A5</option>
+    <option>A4</option>
+    <option>A3</option>
+  </select>
 
-    <textarea placeholder="Extra details"></textarea>
-    <button type="submit">Submit Order</button>
-  </form>
+  <textarea id="details" placeholder="Extra details"></textarea>
+
+  <button type="submit">Submit Order</button>
+</form>
 </div>
 
 <!-- CONTACT -->
@@ -336,6 +337,26 @@ function prevSlide() {
   const total = currentSlider.querySelectorAll(".slides img").length;
   currentIndex = (currentIndex - 1 + total) % total;
   updateSlide();
+}
+
+/* whatapps message */
+function sendToWhatsApp(e) {
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let size = document.getElementById("size").value;
+  let details = document.getElementById("details").value;
+
+  let message = `New Order:%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Size: ${size}%0A
+Details: ${details}`;
+
+  let whatsappURL = `https://wa.me/918508287123?text=${message}`;
+
+  window.open(whatsappURL, "_blank");
 }
 
 /* Swipe */
