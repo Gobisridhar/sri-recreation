@@ -348,26 +348,6 @@ function sendToWhatsApp(e) {
   let phone = document.getElementById("phone").value;
   let size = document.getElementById("size").value;
   let details = document.getElementById("details").value;
-
-  let message = `New Order:%0A
-Name: ${name}%0A
-Phone: ${phone}%0A
-Size: ${size}%0A
-Details: ${details}`;
-
-  let whatsappURL = `https://wa.me/918508287123?text=${message}`;
-
-  window.open(whatsappURL, "_blank");
-}
-
-
-function sendToWhatsApp(e) {
-  e.preventDefault();
-
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let size = document.getElementById("size").value;
-  let details = document.getElementById("details").value;
   let photo = document.getElementById("photo").files[0];
 
   if (!photo) {
