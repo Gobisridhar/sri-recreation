@@ -283,20 +283,20 @@ button {
 <!-- ORDER -->
 <div class="section" id="order">
   <h2>Order Your Portrait</h2>
-  <form onsubmit="sendToWhatsApp(event)">
-  <input type="text" id="name" placeholder="Your Name" required>
-  <input type="tel" id="phone" placeholder="Phone Number" required>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="file" required>
 
-  <select id="size">
-    <option>A5</option>
-    <option>A4</option>
-    <option>A3</option>
-  </select>
+    <select>
+      <option>A5</option>
+      <option>A4</option>
+      <option>A3</option>
+    </select>
 
-  <textarea id="details" placeholder="Extra details"></textarea>
-
-  <button type="submit">Submit Order</button>
-</form>
+    <textarea placeholder="Extra details"></textarea>
+    <button type="submit">Submit Order</button>
+  </form>
 </div>
 
 <!-- CONTACT -->
@@ -339,7 +339,7 @@ function prevSlide() {
   updateSlide();
 }
 
-/* whatapps message */
+/* Whatsapp Message*/
 function sendToWhatsApp(e) {
   e.preventDefault();
 
@@ -347,17 +347,29 @@ function sendToWhatsApp(e) {
   let phone = document.getElementById("phone").value;
   let size = document.getElementById("size").value;
   let details = document.getElementById("details").value;
+  let photo = document.getElementById("photo").files[0];
 
-  let message = `New Order:%0A
-Name: ${name}%0A
-Phone: ${phone}%0A
-Size: ${size}%0A
-Details: ${details}`;
+  if (!photo) {
+    alert("Please upload your reference photo");
+    return;
+  }
 
-  let whatsappURL = `https://wa.me/918508287123?text=${message}`;
+  let message = `🎨 *New Art Order!* %0A
+👤 Name: ${name} %0A
+📞 Phone: ${phone} %0A
+📏 Size: ${size} %0A
+📝 Details: ${details} %0A
+📸 I have attached my photo below`;
 
+  let whatsappURL = `https://wa.me/918508287123?text=${encodeURIComponent(message)}`;
+
+  // Open WhatsApp with message
   window.open(whatsappURL, "_blank");
+
+  // Show instruction
+  alert("After opening WhatsApp, please attach your photo and send 👍");
 }
+let message = `✨ *Sri Recreation Order* ✨ %0A...`;
 
 /* Swipe */
 let startX = 0;
