@@ -347,12 +347,14 @@ function sendToWhatsApp(e) {
   let phone = document.getElementById("phone").value;
   let size = document.getElementById("size").value;
   let details = document.getElementById("details").value;
+  let attach = docunent.getElementbyId("attach photo you want to draw").value;
 
-  let message = `New Order:%0A
+  let message = `Your Order Details:%0A
 Name: ${name}%0A
 Phone: ${phone}%0A
 Size: ${size}%0A
-Details: ${details}`;
+Details: ${details}
+Attach: ${attach photo you want to draw}`;
 
   let whatsappURL = `https://wa.me/918508287123?text=${message}`;
 
